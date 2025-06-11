@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: stranger-chat-v2
+    env: node
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    startCommand: npm start
+    rootDir: .
+    buildFilter:
+      paths:
+        - client/**
+        - server/**
+    envVars:
+      - key: NODE_VERSION
+        value: 18.18.2
