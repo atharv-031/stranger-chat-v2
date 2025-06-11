@@ -4,7 +4,8 @@ import Picker from 'emoji-picker-react';
 import './style.css';
 
 // ✅ Change this to your LAN IP if accessing from phone
-const socket = io('http://localhost:3000');
+const socket = io(); // It will auto-connect to the Render URL
+
 
 function Chat({ nickname }) {
   const [message, setMessage] = useState('');
