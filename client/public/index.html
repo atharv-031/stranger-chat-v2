@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-adsense-account" content="ca-pub-xxxxxxxxxxxxxxxx" />
+  <title>Stranger Chat</title>
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+</head>
+<body>
+  <noscript>You need to enable JavaScript to use this site.</noscript>
+  <div id="root"></div>
+
+  <!-- Google AdSense (paste your actual AdSense code below when ready) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Analytics (optional, visible only to you) -->
+  <script>
+    // Simple count of online users - visible only in console for owner
+    const source = new EventSource('/online-users');
+    source.onmessage = function(event) {
+      console.log("🔒 Online Users:", event.data);
+    };
+  </script>
+</body>
+</html>
