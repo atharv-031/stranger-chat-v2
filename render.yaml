@@ -5,7 +5,7 @@ services:
     plan: free
     buildCommand: |
       cd client
-      npm install
+      npm install --unsafe-perm=true
       npm run build
     startCommand: node server/index.js
     rootDir: .
