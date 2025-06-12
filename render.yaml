@@ -1,14 +1,11 @@
 services:
   - type: web
-    name: stranger-chat-v2
+    name: chat-with-strangers
     env: node
     plan: free
-    buildCommand: |
-      cd client
-      npm install --unsafe-perm=true
-      npm run build
-    startCommand: node server/index.js
     rootDir: .
+    buildCommand: npm install && npm run build
+    startCommand: node server/index.js
     envVars:
       - key: NODE_VERSION
         value: 18.18.2
