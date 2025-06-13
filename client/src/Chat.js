@@ -3,10 +3,11 @@ import io from 'socket.io-client';
 import Picker from 'emoji-picker-react';
 import './style.css';
 
-// ✅ Render-compatible WebSocket connection
-const socket = io('/', {
-  transports: ['websocket'], // force WebSocket only
+// ✅ Correct cross-domain connection to the backend
+const socket = io('https://chat-with-strangers.onrender.com', {
+  transports: ['websocket'],
 });
+
 
 function Chat({ nickname }) {
   const [message, setMessage] = useState('');
