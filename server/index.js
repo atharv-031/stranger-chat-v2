@@ -12,10 +12,13 @@ const io = new Server(server, {
   cors: { origin: "*", methods: ["GET", "POST"] }
 });
 
+// Security middleware
 app.use(helmet());
 app.use(xssClean());
 app.use(rateLimit({ windowMs: 60 * 1000, max: 100 }));
-app.use(express.static(path.join(__dirname, '../client/public')));
+
+// Serve the React build folder
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 let onlineUsers = 0;
 const queue = [];
@@ -97,11 +100,18 @@ io.on('connection', (socket) => {
   });
 });
 
+// Online users API for console logging
 app.get('/online-users', (req, res) => {
   res.json({ count: onlineUsers });
 });
 
-server.listen(3000, () => {
-  console.log('✅ Server running on http://localhost:3000');
+// Fallback route for SPA (React)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+// ✅ Use dynamic port for Render
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
